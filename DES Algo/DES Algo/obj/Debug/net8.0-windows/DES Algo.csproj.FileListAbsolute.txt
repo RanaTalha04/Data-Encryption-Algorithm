@@ -1,0 +1,41 @@
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\bin\Debug\net8.0-windows\DES Algo.exe
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\bin\Debug\net8.0-windows\DES Algo.deps.json
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\bin\Debug\net8.0-windows\DES Algo.runtimeconfig.json
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\bin\Debug\net8.0-windows\DES Algo.dll
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\bin\Debug\net8.0-windows\DES Algo.pdb
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\obj\Debug\net8.0-windows\DES_Algo.DES.resources
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\obj\Debug\net8.0-windows\DES Algo.csproj.GenerateResource.cache
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\obj\Debug\net8.0-windows\DES Algo.GeneratedMSBuildEditorConfig.editorconfig
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\obj\Debug\net8.0-windows\DES Algo.AssemblyInfoInputs.cache
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\obj\Debug\net8.0-windows\DES Algo.AssemblyInfo.cs
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\obj\Debug\net8.0-windows\DES Algo.csproj.CoreCompileInputs.cache
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\obj\Debug\net8.0-windows\DES Algo.dll
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\obj\Debug\net8.0-windows\refint\DES Algo.dll
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\obj\Debug\net8.0-windows\DES Algo.pdb
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\obj\Debug\net8.0-windows\DES Algo.genruntimeconfig.cache
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\obj\Debug\net8.0-windows\ref\DES Algo.dll
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\bin\Debug\net8.0-windows\BouncyCastle.Cryptography.dll
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\bin\Debug\net8.0-windows\itext.barcodes.dll
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\bin\Debug\net8.0-windows\itext.bouncy-castle-connector.dll
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\bin\Debug\net8.0-windows\itext.forms.dll
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\bin\Debug\net8.0-windows\itext.io.dll
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\bin\Debug\net8.0-windows\itext.kernel.dll
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\bin\Debug\net8.0-windows\itext.layout.dll
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\bin\Debug\net8.0-windows\itext.pdfa.dll
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\bin\Debug\net8.0-windows\itext.pdfua.dll
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\bin\Debug\net8.0-windows\itext.sign.dll
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\bin\Debug\net8.0-windows\itext.styledxmlparser.dll
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\bin\Debug\net8.0-windows\itext.svg.dll
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\bin\Debug\net8.0-windows\itext.commons.dll
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\bin\Debug\net8.0-windows\itextsharp.dll
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\bin\Debug\net8.0-windows\Microsoft.DotNet.PlatformAbstractions.dll
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\bin\Debug\net8.0-windows\Microsoft.Extensions.DependencyInjection.dll
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\bin\Debug\net8.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\bin\Debug\net8.0-windows\Microsoft.Extensions.DependencyModel.dll
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\bin\Debug\net8.0-windows\Microsoft.Extensions.Logging.dll
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\bin\Debug\net8.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\bin\Debug\net8.0-windows\Microsoft.Extensions.Options.dll
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\bin\Debug\net8.0-windows\Microsoft.Extensions.Primitives.dll
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\obj\Debug\net8.0-windows\DES Algo.csproj.AssemblyReference.cache
+C:\App\University\5th Semester\Projects\Information Security\DES Algo\DES Algo\obj\Debug\net8.0-windows\DES Algo.csproj.Up2Date
