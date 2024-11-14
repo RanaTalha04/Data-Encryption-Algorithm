@@ -1,4 +1,5 @@
-﻿using iTextSharp.text.pdf;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.parser;
 using System;
 using System.Windows.Forms;
@@ -184,6 +185,10 @@ namespace DES_Algo
 
         public static string HexToBinary(string hex)
         {
+            if (string.IsNullOrEmpty(hex))
+            {
+                throw new ArgumentNullException(nameof(hex), "Input hex string cannot be null or empty");
+            }
             string binary = "";
 
             foreach (char c in hex.ToUpper())
@@ -320,10 +325,36 @@ namespace DES_Algo
 
         }
 
-        public static string XOR(string a, string b)
+        public static string ApplyPermutationFunction(string input)
+        {
+            return Permute(input, permutationFunction, 4);
+        }
+
+        public static string ApplyPermutation(string input, int[] permutationTable)
         {
             string result = "";
-            for(int i = 0; i < a.Length; i++)
+
+            foreach (int index in permutationTable)
+            {
+                result += input[index - 1];
+            }
+
+            return result;
+        }
+
+        public static string XOR(string a, string b)
+        {
+            if (a.Length < b.Length)
+            {
+                a = a.PadLeft(b.Length, '0');
+            }
+            else if (b.Length < a.Length)
+            {
+                b = b.PadLeft(a.Length, '0');
+            }
+
+            string result = "";
+            for (int i = 0; i < a.Length; i++)
             {
                 if (a[i] == b[i])
                 {
@@ -336,69 +367,181 @@ namespace DES_Algo
             }
             return result;
         }
-        public static string Encrypt(string PT)
+
+        public static string ApplySBoxes(string input)
         {
-            string binaryTextBlocks = ConvertToBlocks(PT);
-            string permutedText = "";
-            string currentBlock = "";
-            string permutedBlock = "";
-            string left_half = "";
-            string right_half = "";
+            string output = "";
 
-            for (int i = 0; i < binaryTextBlocks.Length; i += 64)
+            for (int i = 0; i < 8; i++)
             {
 
-                if (i + 64 <= binaryTextBlocks.Length)
-                {
-                    currentBlock = binaryTextBlocks.Substring(i, 64);
-                    permutedBlock = Permute(currentBlock, InitialPermutation, 64);
-                }
-                else
-                {
-                    currentBlock = binaryTextBlocks.Substring(i);
-                    string paddedBlock = currentBlock.PadRight(64, '0');
-
-                    permutedBlock = Permute(paddedBlock, InitialPermutation, 64);
-
-                }
-                permutedText = permutedText + permutedBlock;
-
-                left_half = permutedBlock.Substring(0, 32);
-                right_half = permutedBlock.Substring(32, 32);
+                string block = input.Substring(i * 6, 6);
+                int row = Convert.ToInt32(block[0].ToString() + block[5].ToString(), 2);
+                int col = Convert.ToInt32(block.Substring(1, 4), 2);
+                int sBoxValue = SBox[i, row, col];
+                string sBoxBinary = Convert.ToString(sBoxValue, 2).PadLeft(4, '0');
+                output += sBoxBinary;
             }
 
-            for(int i = 0; i < 16; i++)
-            {
-                string right_Expand = Permute(right_half, ExpansionPermuatation, 48);
-                //xor_RK = XOR(right_Expand, )
-            }
+            return output;
+        }
 
-            return permutedText;
-            //return binaryTextBlocks;
+        public static string ExpandRightHalf(string right_half)
+        {
+            return Permute(right_half, ExpansionPermuatation, 48);
+        }
+
+        public static string LeftShift(string half, int shifts)
+        {
+            return half.Substring(shifts) + half.Substring(0, shifts);
+        }
+
+        public static string GetRoundKey(string key, int round)
+        {
+            string key56 = ApplyPermutation(key, PC1);
+
+            string C = key56.Substring(0, 28);
+            string D = key56.Substring(28, 28);
+
+            C = LeftShift(C, bitsRotated[round]);
+            D = LeftShift(D, bitsRotated[round]);
+
+            string combinedKey = C + D;
+
+            string roundKey = ApplyPermutation(combinedKey, PC2);
+
+            return roundKey;
         }
 
         public static string Key_handling(string masterKey)
         {
-            string binaryKey = textToBinary(masterKey);
-            string key = Permute(binaryKey, PC1, 56);
-            string left_half = key.Substring(0, 28);
-            string right_half = key.Substring(28, 56);
-            return binaryKey;
+            if (string.IsNullOrEmpty(masterKey))
+            {
+                MessageBox.Show("Please enter a master key.");
+            }
+
+            string binaryKey = textToBinary(masterKey); 
+            string permutedKey = Permute(binaryKey, PC1, 56);
+
+            string left_half = permutedKey.Substring(0, 28);
+            string right_half = permutedKey.Substring(28, 28);
+
+            string roundKeys = "";
+
+            for (int round = 0; round < 16; round++)
+            {
+
+                left_half = LeftShift(left_half, round);
+                right_half = LeftShift(right_half, round);
+
+                string combinedKey = left_half + right_half;
+                string roundKey = Permute(combinedKey, PC2, 48);
+                roundKeys += roundKey + " ";
+            }
+
+            return roundKeys.Trim(); 
         }
+
+        public static string Encrypt(string PT, string masterKey)
+        {
+            string binaryTextBlocks = ConvertToBlocks(PT);
+            string permutedText = "";
+
+            string roundKeys = Key_handling(masterKey);
+            string[] roundKeyArray = roundKeys.Split(' '); 
+
+            for (int i = 0; i < binaryTextBlocks.Length; i += 64)
+            {
+                string currentBlock = binaryTextBlocks.Substring(i, 64);
+                string permutedBlock = Permute(currentBlock, InitialPermutation, 64);
+
+                string left_half = permutedBlock.Substring(0, 32);
+                string right_half = permutedBlock.Substring(32, 32);
+
+                for (int round = 0; round < 16; round++)
+                {
+                    string expandedRightHalf = ExpandRightHalf(right_half);
+
+                    string roundKey = roundKeyArray[round]; 
+                    string xored = XOR(expandedRightHalf, roundKey);
+
+                    string sBoxOutput = ApplySBoxes(xored);
+
+                    string pfOutput = ApplyPermutationFunction(sBoxOutput);
+
+                    string newRightHalf = XOR(left_half, pfOutput);
+
+                    left_half = right_half;
+                    right_half = newRightHalf;
+                }
+
+                string finalBlock = right_half + left_half;
+
+                permutedBlock = Permute(finalBlock, FinalPermutation, 64);
+
+                permutedText += permutedBlock;
+            }
+            string encrypted_hex = BinaryToHex(permutedText);
+            return encrypted_hex;
+        }
+
+        private void SaveEncryptedToFile(string encryptedText)
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Filter = "PDF Files (*.pdf)|*.pdf",
+                Title = "Save Encrypted PDF File"
+            })
+            {
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filepath = saveFileDialog.FileName;
+                    using (FileStream fs = new FileStream(filepath, FileMode.Create))
+                    using (Document document = new Document())
+                    using (PdfWriter writer = PdfWriter.GetInstance(document, fs))
+                    {
+                        document.Open();
+                        document.Add(new Paragraph(encryptedText));
+                        document.Close();
+                    }
+                }
+            }
+        }
+
         private void Start_Bttn_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(filePath_tb.Text) || string.IsNullOrEmpty(masterKey_tb.Text) || masterKey_tb.Text.Length != 8)
             {
                 MessageBox.Show("Please select file path or input key of length 8.");
             }
-            else if(Encryption_CB.Checked == Decryption_CB.Checked)
+            if (Encryption_CB.Checked)
             {
-                MessageBox.Show("Select either encryption or decryption not both.");
-            }
-            else
-            {
-                completeness_bar.Value = 0;
                 MasterKey = masterKey_tb.Text;
+                string encryptedText = Encrypt(PlainText,MasterKey);
+                completeness_bar.Value = 0;
+                Status_lbl.Visible = true;
+
+                for (int i = 0; i <= 100; i += 10)
+                {
+                    System.Threading.Thread.Sleep(100);
+                    completeness_bar.Value = i;
+                }
+
+                Status_lbl.Visible = true;
+                Success_lbl.Visible = true;
+                Success_lbl.Text = "Operation Successfull";
+                Success_lbl.BackColor = System.Drawing.Color.Green;
+
+                SaveEncryptedToFile(encryptedText);
+                this.Close();
+            }
+            else if(Decryption_CB.Checked)
+            {
+                MasterKey = masterKey_tb.Text;
+                MessageBox.Show("Decrypt Function");
+                string decryptedText = Encrypt(PlainText, MasterKey);
+
+                completeness_bar.Value = 0;
                 Status_lbl.Visible = true;
 
                 for (int i = 0; i <= 100; i += 10)
@@ -412,8 +555,7 @@ namespace DES_Algo
                 Success_lbl.Text = "Operation Successfull";
                 Success_lbl.BackColor = System.Drawing.Color.Green;
 
-                richTextBox1.Text = Encrypt(PlainText);
-                //richTextBox1.Text = ConvertToBlocks(MasterKey);
+                this.Close();
             }
         }
     }

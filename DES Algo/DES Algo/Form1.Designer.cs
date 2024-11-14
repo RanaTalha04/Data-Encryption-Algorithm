@@ -40,7 +40,6 @@
             or_lbl = new Label();
             Status_lbl = new Label();
             Success_lbl = new Label();
-            richTextBox1 = new RichTextBox();
             Encryption_CB = new RadioButton();
             Decryption_CB = new RadioButton();
             SuspendLayout();
@@ -172,19 +171,11 @@
             Success_lbl.Text = "label1";
             Success_lbl.Visible = false;
             // 
-            // richTextBox1
-            // 
-            richTextBox1.Location = new Point(516, 243);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(311, 236);
-            richTextBox1.TabIndex = 15;
-            richTextBox1.Text = "";
-            // 
             // Encryption_CB
             // 
             Encryption_CB.AutoSize = true;
             Encryption_CB.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            Encryption_CB.Location = new Point(114, 368);
+            Encryption_CB.Location = new Point(109, 392);
             Encryption_CB.Name = "Encryption_CB";
             Encryption_CB.Size = new Size(114, 27);
             Encryption_CB.TabIndex = 16;
@@ -192,17 +183,17 @@
             Encryption_CB.Text = "Encryption";
             Encryption_CB.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // Decryption_CB
             // 
-            radioButton2.AutoSize = true;
-            radioButton2.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            radioButton2.Location = new Point(273, 372);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(116, 27);
-            radioButton2.TabIndex = 17;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "Decryption";
-            radioButton2.UseVisualStyleBackColor = true;
+            Decryption_CB.AutoSize = true;
+            Decryption_CB.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold);
+            Decryption_CB.Location = new Point(273, 392);
+            Decryption_CB.Name = "Decryption_CB";
+            Decryption_CB.Size = new Size(121, 24);
+            Decryption_CB.TabIndex = 17;
+            Decryption_CB.TabStop = true;
+            Decryption_CB.Text = "Decryption";
+            Decryption_CB.UseVisualStyleBackColor = true;
             // 
             // DES
             // 
@@ -210,9 +201,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DimGray;
             ClientSize = new Size(855, 703);
-            Controls.Add(radioButton2);
+            Controls.Add(Decryption_CB);
             Controls.Add(Encryption_CB);
-            Controls.Add(richTextBox1);
             Controls.Add(Success_lbl);
             Controls.Add(Status_lbl);
             Controls.Add(or_lbl);
@@ -244,13 +234,10 @@
         private Button Start_Bttn;
         private TextBox filePath_tb;
         private TextBox masterKey_tb;
-        private CheckBox Encryption_CB;
-        private CheckBox radioButton2;
         private Label or_lbl;
         private Label Status_lbl;
         private Label Success_lbl;
-        private RichTextBox richTextBox1;
-        private RadioButton radioButton1;
-        private RadioButton radioButton2;
+        private RadioButton Decryption_CB;
+        private RadioButton Encryption_CB;
     }
 }

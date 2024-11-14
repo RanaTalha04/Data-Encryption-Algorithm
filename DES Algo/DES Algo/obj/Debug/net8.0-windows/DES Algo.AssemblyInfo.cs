@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DES Algo")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3fee60f300e209ec6607af18adc9abdd090be379")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+080d90c0eeec7a8f055b27317dcd8eba15a7fb7b")]
 [assembly: System.Reflection.AssemblyProductAttribute("DES Algo")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DES Algo")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
