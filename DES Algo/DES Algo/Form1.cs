@@ -314,42 +314,77 @@ namespace DES_Algo
                 {
                     block = binaryPT.Substring(i).PadRight(64, '0');
                 }
-                blocks = blocks + block + "\n";
+                blocks = blocks + block;
             } 
             return blocks;
 
         }
 
+        public static string XOR(string a, string b)
+        {
+            string result = "";
+            for(int i = 0; i < a.Length; i++)
+            {
+                if (a[i] == b[i])
+                {
+                    result += "0";
+                }
+                else
+                {
+                    result += "1";
+                }
+            }
+            return result;
+        }
         public static string Encrypt(string PT)
         {
             string binaryTextBlocks = ConvertToBlocks(PT);
-            //string permutedText = "";
+            string permutedText = "";
+            string currentBlock = "";
+            string permutedBlock = "";
+            string left_half = "";
+            string right_half = "";
 
-            //for(int i = 0; i < binaryTextBlocks.Length; i += 64)
-            //{
-            //    string currentBlock = "";
-            //    string permutedBlock = "";  
+            for (int i = 0; i < binaryTextBlocks.Length; i += 64)
+            {
 
-            //    if(i + 64 <= binaryTextBlocks.Length)
-            //    {
-            //         currentBlock = binaryTextBlocks.Substring(i, 64);
-            //         permutedBlock = Permute(currentBlock, InitialPermutation, 64);
+                if (i + 64 <= binaryTextBlocks.Length)
+                {
+                    currentBlock = binaryTextBlocks.Substring(i, 64);
+                    permutedBlock = Permute(currentBlock, InitialPermutation, 64);
+                }
+                else
+                {
+                    currentBlock = binaryTextBlocks.Substring(i);
+                    string paddedBlock = currentBlock.PadRight(64, '0');
 
-            //    }
-            //    else
-            //    {
-            //        currentBlock = binaryTextBlocks.Substring(i);            
-            //        string paddedBlock = currentBlock.PadRight(64, '0');
+                    permutedBlock = Permute(paddedBlock, InitialPermutation, 64);
 
-            //         permutedBlock = Permute(paddedBlock, InitialPermutation, 64);
-            //    }
-            //    permutedText = permutedText + permutedBlock;
-            //}
+                }
+                permutedText = permutedText + permutedBlock;
 
-            //return permutedText;
-            return binaryTextBlocks;
+                left_half = permutedBlock.Substring(0, 32);
+                right_half = permutedBlock.Substring(32, 32);
+            }
+
+            for(int i = 0; i < 16; i++)
+            {
+                string right_Expand = Permute(right_half, ExpansionPermuatation, 48);
+                //xor_RK = XOR(right_Expand, )
+            }
+
+            return permutedText;
+            //return binaryTextBlocks;
         }
 
+        public static string Key_handling(string masterKey)
+        {
+            string binaryKey = textToBinary(masterKey);
+            string key = Permute(binaryKey, PC1, 56);
+            string left_half = key.Substring(0, 28);
+            string right_half = key.Substring(28, 56);
+            return binaryKey;
+        }
         private void Start_Bttn_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(filePath_tb.Text) || string.IsNullOrEmpty(masterKey_tb.Text) || masterKey_tb.Text.Length != 8)

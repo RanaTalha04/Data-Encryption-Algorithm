@@ -37,22 +37,23 @@
             Start_Bttn = new Button();
             filePath_tb = new TextBox();
             masterKey_tb = new TextBox();
-            Encryption_CB = new CheckBox();
-            Decryption_CB = new CheckBox();
             or_lbl = new Label();
             Status_lbl = new Label();
             Success_lbl = new Label();
             richTextBox1 = new RichTextBox();
+            Encryption_CB = new RadioButton();
+            Decryption_CB = new RadioButton();
             SuspendLayout();
             // 
             // heading_lbl
             // 
             heading_lbl.AutoSize = true;
+            heading_lbl.BorderStyle = BorderStyle.Fixed3D;
             heading_lbl.Font = new Font("Sans Serif Collection", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             heading_lbl.ForeColor = SystemColors.Control;
             heading_lbl.Location = new Point(249, 26);
             heading_lbl.Name = "heading_lbl";
-            heading_lbl.Size = new Size(382, 56);
+            heading_lbl.Size = new Size(384, 58);
             heading_lbl.TabIndex = 0;
             heading_lbl.Text = "DES Encryption Tool";
             // 
@@ -136,28 +137,6 @@
             masterKey_tb.Size = new Size(281, 46);
             masterKey_tb.TabIndex = 9;
             // 
-            // Encryption_CB
-            // 
-            Encryption_CB.AutoSize = true;
-            Encryption_CB.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Encryption_CB.Location = new Point(118, 367);
-            Encryption_CB.Name = "Encryption_CB";
-            Encryption_CB.Size = new Size(115, 27);
-            Encryption_CB.TabIndex = 10;
-            Encryption_CB.Text = "Encryption";
-            Encryption_CB.UseVisualStyleBackColor = true;
-            // 
-            // Decryption_CB
-            // 
-            Decryption_CB.AutoSize = true;
-            Decryption_CB.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Decryption_CB.Location = new Point(270, 370);
-            Decryption_CB.Name = "Decryption_CB";
-            Decryption_CB.Size = new Size(117, 27);
-            Decryption_CB.TabIndex = 11;
-            Decryption_CB.Text = "Decryption";
-            Decryption_CB.UseVisualStyleBackColor = true;
-            // 
             // or_lbl
             // 
             or_lbl.AutoSize = true;
@@ -197,22 +176,46 @@
             // 
             richTextBox1.Location = new Point(516, 243);
             richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(180, 141);
+            richTextBox1.Size = new Size(311, 236);
             richTextBox1.TabIndex = 15;
             richTextBox1.Text = "";
+            // 
+            // Encryption_CB
+            // 
+            Encryption_CB.AutoSize = true;
+            Encryption_CB.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            Encryption_CB.Location = new Point(114, 368);
+            Encryption_CB.Name = "Encryption_CB";
+            Encryption_CB.Size = new Size(114, 27);
+            Encryption_CB.TabIndex = 16;
+            Encryption_CB.TabStop = true;
+            Encryption_CB.Text = "Encryption";
+            Encryption_CB.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            radioButton2.AutoSize = true;
+            radioButton2.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            radioButton2.Location = new Point(273, 372);
+            radioButton2.Name = "radioButton2";
+            radioButton2.Size = new Size(116, 27);
+            radioButton2.TabIndex = 17;
+            radioButton2.TabStop = true;
+            radioButton2.Text = "Decryption";
+            radioButton2.UseVisualStyleBackColor = true;
             // 
             // DES
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(64, 64, 64);
+            BackColor = Color.DimGray;
             ClientSize = new Size(855, 703);
+            Controls.Add(radioButton2);
+            Controls.Add(Encryption_CB);
             Controls.Add(richTextBox1);
             Controls.Add(Success_lbl);
             Controls.Add(Status_lbl);
             Controls.Add(or_lbl);
-            Controls.Add(Decryption_CB);
-            Controls.Add(Encryption_CB);
             Controls.Add(masterKey_tb);
             Controls.Add(filePath_tb);
             Controls.Add(Start_Bttn);
@@ -242,10 +245,12 @@
         private TextBox filePath_tb;
         private TextBox masterKey_tb;
         private CheckBox Encryption_CB;
-        private CheckBox Decryption_CB;
+        private CheckBox radioButton2;
         private Label or_lbl;
         private Label Status_lbl;
         private Label Success_lbl;
         private RichTextBox richTextBox1;
+        private RadioButton radioButton1;
+        private RadioButton radioButton2;
     }
 }
